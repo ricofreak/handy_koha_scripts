@@ -10,11 +10,10 @@ my $builder = t::lib::TestBuilder->new();
 #my @statuses = ('ASKED', 'CHECKED', 'ACCEPTED', 'REJECTED', 'ORDERED', 'AVAILABLE');
 
 while( my $library = $libraries->next) {
-my $several = int( rand(100) );
+my $several = 10;
     for( my $i = 0; $i < $several; $i++ ){
         my $holder = Koha::Patrons->find( int(rand(50))+1 );
-#my $biblio = Koha::Biblios->find( int(rand(432))+1 );
-        my $biblio = Koha::Biblios->find( 144 );
+        my $biblio = Koha::Biblios->find( int(rand(436)) );
         next unless $biblio;
         my $item = $biblio->items->search({},{ order_by => \["rand()"] })->next;
         my $itemnumber = $item ? $item->itemnumber : undef;
@@ -23,22 +22,22 @@ my $several = int( rand(100) );
             value => {
                 borrowernumber => $holder->borrowernumber,
                 biblionumber => $biblio->biblionumber,
-                reservedate => dt_from_string(),
-                branchcode  => 'MPL',
+                reservedate => '2024-07-24',
+                branchcode  => 'CPL',
                 desk_id => undef,
                 cancellationdate => undef,
                 cancellation_reason => undef,
-                timestamp => dt_from_string, 
+                timestamp => '2024-07-24 16:59:42', 
                 priority => 0,
-                found => '', 
+                found => 'W', 
                 itemnumber => $itemnumber,
-                waitingdate => '2024-04-06',
-                expirationdate => '2024-05-06',
+                waitingdate => '2024-07-24',
+                expirationdate => '2024-07-30',
                 suspend => 0,
                 suspend_until=>undef,
                 item_level_hold => $itemnumber ? 1 : 0,
                 itemtype => undef,
-                patron_expiration_date => '2024-03-30',
+                patron_expiration_date => undef,
                 lowestPriority => 0,
             }
         });
