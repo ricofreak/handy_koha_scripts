@@ -92,6 +92,7 @@ foreach my $item (@$items) {
     $sth = $dbh->prepare("SELECT * FROM borrowers ORDER BY RAND() LIMIT 1");
     $sth->execute();
     my $borrower = $sth->fetchrow_hashref;
+    warn $borrower;
     $sth->finish;
 
     if ($issue) {

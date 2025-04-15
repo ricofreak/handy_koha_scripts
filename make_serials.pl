@@ -15,7 +15,6 @@ while( my $library = $libraries->next) {
             class => 'Koha::Serials',
             value => {
                 serialseq      => 'serialseq',
-                subscriptionid => 1,
                 status         => 3,
                 biblionumber   => $biblio->biblionumber,
                 claimdate      => '2024-01-01',
